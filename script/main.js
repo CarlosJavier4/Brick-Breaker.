@@ -29,6 +29,9 @@ var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
+// Score
+var score = 0;
+
 document.addEventListener("keydown",keyDownHandler,false);
 document.addEventListener("keyup",keyUpHandler,false);
 
@@ -51,16 +54,23 @@ function keyDownHandler(e){
 	
 function keyUpHandler(e){
 	
-	if(e.keyCode==39){
-		
+	if(e.keyCode==39){	
 		rightPressed=false;
 	}
 	else if(e.keyCode==37){
 		
-		leftPressed=false;
+	leftPressed=false;
 		
-		}
 	}
+}
+
+/// Dibujar
+
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#fff";
+    ctx.fillText("Score: "+score, 8, 20);
+}
 
 function drawBall(){
 	ctx.beginPath();
@@ -106,19 +116,27 @@ function collisionDetection() {
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy;
                     b.status = 0;
+                    ++score;
+                    if(score == brickRowCount*brickColumnCount) {
+                        alert("YOU WIN, CONGRATULATIONS!");
+                        document.location.reload();
+                    }
                 }
             }
         }
     }
 }
 
-
 function draw(){
 	ctx.clearRect(0,0,canvas.width,canvas.height);
-	drawBricks();
+	
+    drawBricks();
 	drawBall();
 	drawPaddle();
+    drawScore();
+
 	collisionDetection();
+
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
