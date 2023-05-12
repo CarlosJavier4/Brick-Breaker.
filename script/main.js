@@ -72,19 +72,19 @@ function keyUpHandler(e){
 // Textos
 function drawScore() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#000";
     ctx.fillText("Score: " + score, 8, 20);
 }
 
 function drawLevel() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#000";
     ctx.fillText("Lv: " + level, 400, 20);
 }
 
 function drawLife() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#000";
     ctx.fillText("Live: " + life, 8, canvas.height-5);
 }
 
